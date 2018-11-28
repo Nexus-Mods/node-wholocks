@@ -1,0 +1,16 @@
+{
+  "name": "wholocks",
+  "version": "0.0.1",
+  "description": "List processes locking a file.",
+  "main": "index.js",
+  "scripts": {
+    "install": "autogypi && node-gyp configure build"
+  },
+  "author": "Black Tree Gaming Ltd.",
+  "license": "GPL-3",
+  "dependencies": {
+    "autogypi": "^0.2.2",
+    "nan": "^2.8.0",
+    "node-gyp": "^3.6.2"
+  }
+}
