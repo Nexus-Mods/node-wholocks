@@ -1,11 +1,10 @@
 declare module "wholocks" {
-    interface ProcessInfo {
+    export interface ProcessInfo {
       pid: number;
       appName: string;
     }
 
-    function wholocks(filePath: string): Bluebird<Array<ProcessInfo>>;
+    function wholocks(filePath: string): ProcessInfo[];
   
     export default wholocks;
-  }
 }

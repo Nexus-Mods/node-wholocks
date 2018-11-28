@@ -1,6 +1,6 @@
 {
   "name": "wholocks",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "List processes locking a file.",
   "main": "index.js",
   "scripts": {
