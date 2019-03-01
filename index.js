@@ -2,7 +2,7 @@ const { execFileSync } = require('child_process');
 const path = require('path');
 
 function linuxGetLocks(checkPath) {
-  const { locks } = JSON.parse(execFileSync('lslocks', ['-J']));
+  const { locks } = JSON.parse(execFileSync('lslocks', ['-o', 'command,pid,path', '-J']));
   return locks
     .filter(lock => lock.path === checkPath)
     .map(lock => ({ appName: lock.command, pid: lock.pid }));
