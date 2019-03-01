@@ -5,4 +5,4 @@ List all processes that have a lock on a file. This doesn't work with directorie
 # Supported OS
 
 * Windows
-
+* Linux (util-linux v2.27+)
