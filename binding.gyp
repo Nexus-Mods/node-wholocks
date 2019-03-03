@@ -5,10 +5,6 @@
             "includes": [
                 "auto.gypi"
             ],
-            "sources": [
-                "src_win/impl.cpp",
-                "src_win/wholocks.cpp"
-            ],
             "include_dirs": [
             ],
             "libraries": [
@@ -23,7 +19,15 @@
                 "VCCLCompilerTool": {
                     "ExceptionHandling": 1
                 }
-            }
+            },
+            "conditions":  [
+                ["OS=='win'", {
+                    "sources": [
+                        "src_win/impl.cpp",
+                        "src_win/wholocks.cpp"
+                    ]
+                }]
+            ]
         }
     ],
     "includes": [
