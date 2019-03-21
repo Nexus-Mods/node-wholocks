@@ -1,6 +1,6 @@
 {
   "name": "wholocks",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "List processes locking a file.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "autogypi": "^0.2.2",
-    "nan": "^2.8.0",
-    "node-gyp": "^3.6.2"
+    "nan": "^2.13.1",
+    "node-gyp": "^3.8.0"
   }
 }
