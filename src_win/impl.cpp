@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 
+#include <windows.h>
 #include <restartmanager.h>
 #pragma comment(lib, "Rstrtmgr.lib")
 
@@ -17,7 +18,7 @@ public:
   {
   }
 
-  virtual ~WILException() throw () {}
+  virtual ~WILException() noexcept {}
 
   virtual const char* what() const throw () {
     return m_Message.c_str();
