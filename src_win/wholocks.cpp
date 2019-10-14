@@ -7,11 +7,11 @@
 using namespace Nan;
 using namespace v8;
 
-Local<Object> convert(const Process &proc) {
+Local<Object> convert(const Local<Context> &context, const Process &proc) {
   Local<Object> result = New<Object>();
-  result->Set(New<String>("appName").ToLocalChecked(),
+  result->Set(context, New<String>("appName").ToLocalChecked(),
               New<String>(toMB(proc.appName.c_str(), CodePage::UTF8, proc.appName.length()).c_str()).ToLocalChecked());
-  result->Set(Nan::New<v8::String>("pid").ToLocalChecked(), New<Number>(proc.pid));
+  result->Set(context, Nan::New<v8::String>("pid").ToLocalChecked(), New<Number>(proc.pid));
   return result;
 }
 
@@ -23,11 +23,13 @@ NAN_METHOD(wholocks) {
 
   String::Utf8Value path(info[0]->ToString());
 
+  Local<Context> context = Nan::GetCurrentContext();
+
   try {
     std::vector<Process> processes = WhoIsLocking(toWC(*path, CodePage::UTF8, path.length()));
     v8::Local<v8::Array> retValue = Nan::New<v8::Array>();
     for (int i = 0; i < processes.size(); ++i) {
-      retValue->Set(i, convert(processes[i]));
+      retValue->Set(context, i, convert(context, processes[i]));
     }
     info.GetReturnValue().Set(retValue);
   }
