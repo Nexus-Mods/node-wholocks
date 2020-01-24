@@ -21,9 +21,10 @@ NAN_METHOD(wholocks) {
     return;
   }
 
-  String::Utf8Value path(info[0]->ToString());
-
   Local<Context> context = Nan::GetCurrentContext();
+  Isolate *isolate = context->GetIsolate();
+
+  String::Utf8Value path(isolate, info[0]);
 
   try {
     std::vector<Process> processes = WhoIsLocking(toWC(*path, CodePage::UTF8, path.length()));
@@ -43,4 +44,8 @@ NAN_MODULE_INIT(Init) {
     GetFunction(New<FunctionTemplate>(wholocks)).ToLocalChecked());
 }
 
+#if NODE_MAJOR_VERSION >= 10
+NAN_MODULE_WORKER_ENABLED(wholocks, Init)
+#else
 NODE_MODULE(wholocks, Init)
+#endif
