@@ -28,5 +28,6 @@ function wholocks(checkPath) {
 }
 
 module.exports = {
+  __esModule: true,
   default: wholocks,
 };
