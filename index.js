@@ -1,14 +1,7 @@
 const { execFileSync } = require('child_process');
 const path = require('path');
 
-let winlib;
-// have to load the lib asap because for some reason the require for native module
-// (very rarely) fails (in electron only?) when done later.
-// This may be a bug in Vortex exclusively but I have no clue what we might be doing
-// to cause that.
-if (process.platform === 'win32') {
-  winlib = require('./build/Release/wholocks');
-}
+let winapi = require('winapi-bindings');
 
 function linuxGetLocks(checkPath) {
   const { locks } = JSON.parse(execFileSync('lslocks', ['-o', 'command,pid,path', '-J']));
@@ -19,7 +12,7 @@ function linuxGetLocks(checkPath) {
 
 function wholocks(checkPath) {
   if (process.platform === 'win32') {
-    return winlib.wholocks(path.normalize(checkPath));
+    return winapi.WhoLocks(path.normalize(checkPath));
   } else if (process.platform === 'linux') {
     return linuxGetLocks(path.normalize(checkPath));
   } else {
