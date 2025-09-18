@@ -1,10 +1,9 @@
 {
   "name": "wholocks",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "List processes locking a file.",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "Black Tree Gaming Ltd.",
   "license": "GPL-3.0",
   "dependencies": {
